@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My App</title>
+    <style>
+      </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <style>
+                                .btn-group {
+    margin-top: 15px;                                
+    display: flex;
+    justify-content: space-between;
+}                
+
+                            </style>
+                            <h1>Getting Expressions</h1>
+                            <img src="{{ url_for('video_feed') }}" width="100%">
+                            <div class="btn-group" role="group" aria-label="Button Group">
+                                <form action="/cap" method="get">
+                                    <button type="submit" class="btn btn-primary">Retake</button>
+                                </form>
+                                <form action="/close" method="get">
+                                    <button type="submit" class="btn btn-primary">Get Suggestions</button>
+                                </form>
+                                <form action="/close2" method="get">
+                                    <button type="submit" class="btn btn-primary">Explore more!</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                {% if show_table %}
+                <div class="container mt-5">
+                    <title>Song Recommendation</title>
+                    <style>
+                        /* Center table horizontally */
+                        .btn-group {
+    display: flex;
+    justify-content: space-between;
+}                
+    
+        table {
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        /* Center table contents vertically and horizontally */
+        td, th {
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid black;
+            padding: 10px;
+            font-size: 16px;
+        }
+        
+        /* Add margin to top of table */
+        table {
+            margin-top: 20px;
+        }
+        
+        /* Set table position and size */
+        
+        /* Green background for column headers */
+        th {
+            background-color: green;
+            color: white;
+        }
+        .col-lg-6 > div.container {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .col-lg-6:nth-child(even) {
+            background-color: white;
+        }
+
+        .col-lg-6:nth-child(odd) {
+            background-color: white;
+        }
+        /* Add hover effect on rows */
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Alternate row color */
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Song Recommendation</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Mood</th>
+                <th>Popularity</th>
+                <th>YouTube Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in string_array %}
+            <tr>
+                {% for field in item.split(',') %}
+                <td>{{ field }}</td>
+                {% endfor %}
+                <td><a href="https://www.youtube.com/results?search_query={{ item.split(',')[0] }} {{ item.split(',')[1] }} music" target="_blank">{{ item.split(',')[0] }} {{ item.split(',')[1] }}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+            integrity="sha384-v5HSkl2dGS0GZf+bvuJv1M9Xwh6LX/iqvgr5Av5WW5x5xZZkIuaBAiZAxoG/pvOW"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

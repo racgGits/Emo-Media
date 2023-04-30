@@ -1,0 +1,105 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Song Recommendation</title>
+</head>
+<body>
+    <h1>Song Recommendation</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Mood</th>
+                <th>Popularity</th>
+                <th>YouTube Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in string_array %}
+            <tr>
+                {% for field in item.split(',') %}
+                <td>{{ field }}</td>
+                {% endfor %}
+                <td><a href="https://www.youtube.com/results?search_query={{ item.split(',')[0] }} {{ item.split(',')[1] }} music">{{ item.split(',')[0] }} {{ item.split(',')[1] }}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Song Recommendation</title>
+    <style>
+        /* Center table horizontally */
+        table {
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        /* Center table contents vertically and horizontally */
+        td, th {
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid black;
+            padding: 10px;
+            font-size: 16px;
+        }
+        
+        /* Add margin to top of table */
+        table {
+            margin-top: 20px;
+        }
+        
+        /* Set table position and size */
+        
+        /* Green background for column headers */
+        th {
+            background-color: green;
+            color: white;
+        }
+
+        /* Add hover effect on rows */
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Alternate row color */
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Song Recommendation</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Mood</th>
+                <th>Popularity</th>
+                <th>YouTube Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in string_array %}
+            <tr>
+                {% for field in item.split(',') %}
+                <td>{{ field }}</td>
+                {% endfor %}
+                <td><a href="https://www.youtube.com/results?search_query={{ item.split(',')[0] }} {{ item.split(',')[1] }} music" target="_blank">{{ item.split(',')[0] }} {{ item.split(',')[1] }}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h2>Listen more similar songs based on your mood :-</h2>
+    <h3><a href="https://www.youtube.com/results?search_query=new+songs+{{ string_array[0].split(',')[2] }}" target="_blank">{{ string_array[0].split(',')[2] }}</a></h3>
+
+</body>
+</html>
